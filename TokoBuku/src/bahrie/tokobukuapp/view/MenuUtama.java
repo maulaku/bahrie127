@@ -218,7 +218,7 @@ public class MenuUtama extends javax.swing.JFrame {
         });
         menuTransaksi.add(subPasokBuku);
 
-        jMenuItem4.setText("Pembelian");
+        jMenuItem4.setText("Penjualan");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -272,7 +272,8 @@ public class MenuUtama extends javax.swing.JFrame {
             jDialog1.setVisible(false);
             if(k.getAkses().equals("Kasir")){
             menuTransaksi.setVisible(true);
-            subPasokBuku.setVisible(false);            
+            subPasokBuku.setVisible(false);
+            jMenuItem4.setVisible(true);
             }else{
                 menuTransaksi.setVisible(true);
                 menuMaster.setVisible(true);
