@@ -230,7 +230,7 @@ public class TransaksiPenjualan extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Transaksi Pembelian");
+        setTitle("Transaksi Penjualan");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Barang"));
 

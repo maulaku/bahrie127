@@ -32,10 +32,11 @@ public class ImplemDistributor implements InterDistributor{
     }
 
     public void update(Distributor o) throws SQLException {
-        PreparedStatement ps=DatabaseUtilities.getConnection().prepareStatement("update distributor set nama_distributor=?,alamat=?,telepon=? where=?");
+        PreparedStatement ps=DatabaseUtilities.getConnection().prepareStatement("update distributor set nama_distributor=?,alamat=?,telepon=? where id_distributor=?");
         ps.setString(1, o.getNama());
         ps.setString(2, o.getAlamat());
         ps.setString(3, o.getTelepon());
+        ps.setInt(4, o.getId());
         ps.executeUpdate();
     }
 
