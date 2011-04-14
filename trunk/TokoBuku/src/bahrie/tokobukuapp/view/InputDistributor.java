@@ -336,10 +336,10 @@ public class InputDistributor extends javax.swing.JInternalFrame {
             try {
                 Distributor d = new Distributor();
                 d.setId(Integer.parseInt(txtID.getText()));
-                d.setNama(txtNama.getName());
+                d.setNama(txtNama.getText());
                 d.setTelepon(txtTelepon.getText());
                 d.setAlamat(txtAlamat.getText());
-                daoDistributor.insert(d);
+                daoDistributor.update(d);
             } catch (SQLException ex) {
                 Logger.getLogger(InputDistributor.class.getName()).log(Level.SEVERE, null, ex);
             }
