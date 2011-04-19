@@ -8,45 +8,53 @@
  *
  * Created on Mar 13, 2011, 8:58:54 PM
  */
-
 package bahrie.tokobukuapp.view;
 
 import bahrie.tokobukuapp.entity.Kasir;
 import bahrie.tokobukuapp.implement.ImplemKasir;
 import bahrie.tokobukuapp.interfaces.InterKasir;
+import bahrie.tokobukuapp.koneksi.DatabaseUtilities;
 import java.awt.Dimension;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
  * @author bahrie
  */
 public class MenuUtama extends javax.swing.JFrame {
-    private Kasir k=new Kasir();
+
+    private Kasir k = new Kasir();
     InterKasir daoKasir;
+
     /** Creates new form MenuUtama */
     public MenuUtama() {
         initComponents();
-        daoKasir=new ImplemKasir();
+        daoKasir = new ImplemKasir();
         menuLogout.setEnabled(false);
         menuMaster.setVisible(false);
         menuTransaksi.setVisible(false);
-   
+        menuLaporan.setVisible(false);
+
     }
 
-
-    boolean cekLogin(String user,String pass){
-        boolean hasil=false;
+    boolean cekLogin(String user, String pass) {
+        boolean hasil = false;
         try {
             k = daoKasir.getByUsername(user);
-            if(user.equals(k.getUsername())&&pass.equals(k.getPassword())){
-                hasil= true;
-            }else{
-                hasil= false;
+            if (user.equals(k.getUsername()) && pass.equals(k.getPassword())) {
+                hasil = true;
+            } else {
+                hasil = false;
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,6 +91,12 @@ public class MenuUtama extends javax.swing.JFrame {
         menuTransaksi = new javax.swing.JMenu();
         subPasokBuku = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        menuLaporan = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
 
@@ -245,6 +259,50 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenuBar1.add(menuTransaksi);
 
+        menuLaporan.setText("Laporan");
+
+        jMenuItem6.setText("Buku");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        menuLaporan.add(jMenuItem6);
+
+        jMenuItem7.setText("Kasir");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        menuLaporan.add(jMenuItem7);
+
+        jMenuItem8.setText("Distributor");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        menuLaporan.add(jMenuItem8);
+
+        jMenuItem9.setText("Laporan Pasok");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        menuLaporan.add(jMenuItem9);
+
+        jMenuItem10.setText("Laporan Penjualan");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        menuLaporan.add(jMenuItem10);
+
+        jMenuBar1.add(menuLaporan);
+
         jMenu2.setText("Help");
 
         jMenuItem5.setText("About");
@@ -264,54 +322,56 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        InputBuku iBuku=new InputBuku();
+        InputBuku iBuku = new InputBuku();
         jDesktopPane1.add(iBuku);
         iBuku.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        InputKasir iKasir=new InputKasir();
+        InputKasir iKasir = new InputKasir();
         jDesktopPane1.add(iKasir);
         iKasir.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        InputDistributor iDist=new InputDistributor();
+        InputDistributor iDist = new InputDistributor();
         jDesktopPane1.add(iDist);
         iDist.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void subPasokBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subPasokBukuActionPerformed
         // TODO add your handling code here:
-        TransaksiPasok tPasok=new TransaksiPasok();
+        TransaksiPasok tPasok = new TransaksiPasok();
         jDesktopPane1.add(tPasok);
         tPasok.setVisible(true);
     }//GEN-LAST:event_subPasokBukuActionPerformed
 
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
-        if(cekLogin(txtUser.getText(), txtPassword.getText())){
+        if (cekLogin(txtUser.getText(), txtPassword.getText())) {
             txtUser.setText("");
             txtPassword.setText("");
             menuLogin.setEnabled(false);
             menuLogout.setEnabled(true);
-            this.setTitle("Nama "+k.getAkses()+" : "+k.getNama()+"  --  APLIKASI TOKO BUKU SEHATI");
+            this.setTitle("Nama " + k.getAkses() + " : " + k.getNama() + "  --  APLIKASI TOKO BUKU SEHATI");
             jDialog1.setVisible(false);
-            if(k.getAkses().equals("Kasir")){
-            menuTransaksi.setVisible(true);
-            subPasokBuku.setVisible(false);
-            jMenuItem4.setVisible(true);
-            }else{
+            if (k.getAkses().equals("Kasir")) {
+                menuTransaksi.setVisible(true);
+                subPasokBuku.setVisible(false);
+                jMenuItem4.setVisible(true);
+                menuLaporan.setVisible(false);
+            } else {
                 menuTransaksi.setVisible(true);
                 menuMaster.setVisible(true);
+                menuLaporan.setVisible(true);
             }
-        }else{
-                JOptionPane.showMessageDialog(this, "Maaf, Username dan password anda tidak sesuai..!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-                txtUser.setText("");
-                txtPassword.setText("");
-            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Maaf, Username dan password anda tidak sesuai..!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            txtUser.setText("");
+            txtPassword.setText("");
+        }
     }//GEN-LAST:event_btnMasukActionPerformed
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
@@ -332,7 +392,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        TransaksiPenjualan tPen=new TransaksiPenjualan(k.getUsername());
+        TransaksiPenjualan tPen = new TransaksiPenjualan(k.getUsername());
         jDesktopPane1.add(tPen);
         tPen.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -344,22 +404,21 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_ENTER){
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             btnMasukActionPerformed(null);
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_formWindowActivated
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        About ab=new About();
+        About ab = new About();
         jDesktopPane1.add(ab);
-        Dimension screenSize=this.getSize();
-        Dimension frameSize=ab.getSize();
+        Dimension screenSize = this.getSize();
+        Dimension frameSize = ab.getSize();
         ab.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
         ab.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -371,17 +430,105 @@ public class MenuUtama extends javax.swing.JFrame {
         jDialog1.setVisible(true);
     }//GEN-LAST:event_formWindowOpened
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        try {
+            // TODO add your handling code here:
+            InputStream is = getClass().getResourceAsStream("/bahrie/tokobukuapp/report/repBarang.jasper");
+            HashMap has = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(is, has, DatabaseUtilities.getConnection());
+            ReportReview rp = new ReportReview(jasperPrint);
+            Dimension screenSize = this.getSize();
+            Dimension frameSize = rp.getSize();
+            rp.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+            rp.setVisible(true);
+//        JasperViewer.viewReport(jasperPrint, false);
+//            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (JRException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            InputStream is = getClass().getResourceAsStream("/bahrie/tokobukuapp/report/repKasir.jasper");
+            HashMap has = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(is, has, DatabaseUtilities.getConnection());
+            ReportReview rp = new ReportReview(jasperPrint);
+            Dimension screenSize = this.getSize();
+            Dimension frameSize = rp.getSize();
+            rp.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+            rp.setVisible(true);
+//          JasperViewer.viewReport(jasperPrint, false);
+//          JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (JRException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            InputStream is = getClass().getResourceAsStream("/bahrie/tokobukuapp/report/repDistributor.jasper");
+            HashMap has = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(is, has, DatabaseUtilities.getConnection());
+            ReportReview rp = new ReportReview(jasperPrint);
+            Dimension screenSize = this.getSize();
+            Dimension frameSize = rp.getSize();
+            rp.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+            rp.setVisible(true);
+//            JasperViewer.viewReport(jasperPrint, false);
+//            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (JRException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        try {
+            // TODO add your handling code here:
+            InputStream is = getClass().getResourceAsStream("/bahrie/tokobukuapp/report/repPasok.jasper");
+            HashMap has = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(is, has, DatabaseUtilities.getConnection());
+            ReportReview rp = new ReportReview(jasperPrint);
+            Dimension screenSize = this.getSize();
+            Dimension frameSize = rp.getSize();
+            rp.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+            rp.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        try {
+            // TODO add your handling code here:
+            InputStream is = getClass().getResourceAsStream("/bahrie/tokobukuapp/report/repPenjualan.jasper");
+            HashMap has = new HashMap();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(is, has, DatabaseUtilities.getConnection());
+            ReportReview rp = new ReportReview(jasperPrint);
+            Dimension screenSize = this.getSize();
+            Dimension frameSize = rp.getSize();
+            rp.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+            rp.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new MenuUtama().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMasuk;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -392,12 +539,18 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem menuExit;
+    private javax.swing.JMenu menuLaporan;
     private javax.swing.JMenuItem menuLogin;
     private javax.swing.JMenuItem menuLogout;
     private javax.swing.JMenu menuMaster;
@@ -406,5 +559,4 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
-
 }
