@@ -308,6 +308,8 @@ public class TransaksiPenjualan extends javax.swing.JInternalFrame {
             }
         });
 
+        txtTotal.setEditable(false);
+
         jLabel3.setText("Total :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -345,6 +347,7 @@ public class TransaksiPenjualan extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Tanggal :");
 
+        txtTanggal.setEditable(false);
         txtTanggal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd MMMM yyyy"))));
         txtTanggal.setValue(new java.util.Date());
 
@@ -460,6 +463,7 @@ public class TransaksiPenjualan extends javax.swing.JInternalFrame {
 
     private void bProsesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProsesActionPerformed
         // TODO add your handling code here:
+        if(!recPenjualan.isEmpty()){
         for (Penjualan p : recPenjualan) {
             try {
                 daoPenj.insert(p);
@@ -470,6 +474,9 @@ public class TransaksiPenjualan extends javax.swing.JInternalFrame {
         recPenjualan.clear();
         JOptionPane.showMessageDialog(this, "Pembelian Berhasil Total harga " +txtTotal.getText(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
         this.statusAwal();
+        }else{
+            JOptionPane.showMessageDialog(this, "Tidak ada transaksi pembelian", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_bProsesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAmbil;
