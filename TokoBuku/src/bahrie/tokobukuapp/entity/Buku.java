@@ -22,6 +22,8 @@ public class Buku {
     private int ppn;
     private int diskon;
 
+
+    //class buku
     public Buku() {
     }
 
