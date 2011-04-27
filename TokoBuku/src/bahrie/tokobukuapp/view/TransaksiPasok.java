@@ -68,7 +68,7 @@ public class TransaksiPasok extends javax.swing.JInternalFrame {
     }
 
     void isiTabelPasok() {
-        Object data[][] = new Object[recDistributor.size()][3];
+        Object data[][] = new Object[recPasok.size()][3];
         int x = 0;
         for (Pasok p : recPasok) {
             data[x][0] = p.getBuku().getId();
