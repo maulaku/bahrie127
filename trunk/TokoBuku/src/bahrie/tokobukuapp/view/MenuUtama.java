@@ -324,6 +324,9 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         InputBuku iBuku = new InputBuku();
         jDesktopPane1.add(iBuku);
+        Dimension screenSize = this.getSize();
+        Dimension frameSize = iBuku.getSize();
+        iBuku.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
         iBuku.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -331,6 +334,9 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         InputKasir iKasir = new InputKasir();
         jDesktopPane1.add(iKasir);
+        Dimension screenSize = this.getSize();
+        Dimension frameSize = iKasir.getSize();
+        iKasir.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
         iKasir.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -338,6 +344,9 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         InputDistributor iDist = new InputDistributor();
         jDesktopPane1.add(iDist);
+        Dimension screenSize = this.getSize();
+        Dimension frameSize = iDist.getSize();
+        iDist.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
         iDist.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -345,6 +354,9 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         TransaksiPasok tPasok = new TransaksiPasok();
         jDesktopPane1.add(tPasok);
+        Dimension screenSize = this.getSize();
+        Dimension frameSize = tPasok.getSize();
+        tPasok.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
         tPasok.setVisible(true);
     }//GEN-LAST:event_subPasokBukuActionPerformed
 
@@ -376,7 +388,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         // TODO add your handling code here:
-        jDialog1.setSize(338, 190);
+        jDialog1.setSize(375, 190);
         jDialog1.setLocationRelativeTo(null);
         jDialog1.setVisible(true);
     }//GEN-LAST:event_menuLoginActionPerformed
@@ -387,6 +399,7 @@ public class MenuUtama extends javax.swing.JFrame {
         menuTransaksi.setVisible(false);
         menuMaster.setVisible(false);
         menuLogout.setEnabled(false);
+        menuLaporan.setVisible(false);
         this.setTitle("APLIKASI TOKO BUKU SEHATI");
     }//GEN-LAST:event_menuLogoutActionPerformed
 
@@ -394,6 +407,9 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         TransaksiPenjualan tPen = new TransaksiPenjualan(k.getUsername());
         jDesktopPane1.add(tPen);
+        Dimension screenSize = this.getSize();
+        Dimension frameSize = tPen.getSize();
+        tPen.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
         tPen.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -425,7 +441,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        jDialog1.setSize(338, 190);
+        jDialog1.setSize(375, 185);
         jDialog1.setLocationRelativeTo(null);
         jDialog1.setVisible(true);
     }//GEN-LAST:event_formWindowOpened
