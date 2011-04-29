@@ -6,7 +6,13 @@
 package bahrie.tokobukuapp;
 
 import bahrie.tokobukuapp.view.MenuUtama;
-import com.jtattoo.plaf.JTattooUtilities;
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.fast.FastLookAndFeel;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+import com.jtattoo.plaf.luna.LunaLookAndFeel;
+import com.jtattoo.plaf.smart.SmartLookAndFeel;
 import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +33,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             // TODO code application logic here
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+            UIManager.setLookAndFeel(new GraphiteLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
