@@ -23,7 +23,7 @@ public class DatabaseUtilities {
         if(conn==null){
             try {
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tokobuku", "root", "root");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tokobuku", "root", "");
             } catch (SQLException ex) {
                 Logger.getLogger(DatabaseUtilities.class.getName()).log(Level.SEVERE, null, ex);
             }
