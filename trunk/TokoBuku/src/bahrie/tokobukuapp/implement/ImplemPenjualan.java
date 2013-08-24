@@ -19,7 +19,7 @@ public class ImplemPenjualan implements InterPenjualan{
 
     public Penjualan insert(Penjualan o) throws SQLException {
         PreparedStatement ps=DatabaseUtilities.getConnection().prepareStatement("insert into penjualan values(null,?,?,?,?,?)");
-        PreparedStatement ps2=DatabaseUtilities.getConnection().prepareStatement("udpate buku set stok=? where id_buku=?");
+        PreparedStatement ps2=DatabaseUtilities.getConnection().prepareStatement("update buku set stok=? where id_buku=?");
         ps.setString(1, o.getBuku().getId());
         ps.setInt(2, o.getKasir().getId());
         ps.setInt(3, o.getJumlah());
