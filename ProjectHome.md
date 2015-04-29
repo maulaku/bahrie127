@@ -1,0 +1,1 @@
+baca baca, koding koding, analisia analisa,
